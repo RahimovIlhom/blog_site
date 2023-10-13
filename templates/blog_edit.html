@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Blogni o'zgartirish</h1>
+<br>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form|crispy }}
+    <input type="submit" value="O'zgartirish">
+</form>
+{% endblock content %}

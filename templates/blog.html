@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Maqola{% endblock title %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    {% if blog.image %}
+  <div class="col-sm-5 mb-3 mb-sm-0">
+    <div class="card">
+<!--      <div class="card-body">-->
+        <img src="{{ blog.image.url }}" class="card-img-top" alt="{{ article.title }}">
+<!--      </div>-->
+    </div>
+  </div>
+    {% endif %}
+  <div class="col-sm-7">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <p class="card-text"><small class="text-body-secondary">{{ blog.author }} | {{ blog.at_date }}</small></p>
+        <p class="card-text">{{ blog.body | safe }}</p>
+        <a href="{% url 'edit_blog' blog.pk %}" class="btn btn-outline-info">Tahrirlash</a>
+        <a href="{% url 'delete_blog' blog.pk %}" class="btn btn-outline-danger">O'chirish</a>
+        <a href="{% url 'comment' blog.pk %}" class="btn btn-outline-success">Izoh bildirish</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>Barcha izohlar</h3>
+<br>
+
+{% for comment in blog.comments.all %}
+<figure>
+  <blockquote class="blockquote">
+    <p>{{ comment.comment }}</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    {{ comment.author }} <cite title="Source Title">{{ comment.timestamp }}</cite>
+  </figcaption>
+</figure>
+{% endfor %}
+
+{% endblock content %}

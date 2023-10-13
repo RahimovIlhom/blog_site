@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<h1>Saytga kirish</h1>
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Kirish">
+</form>
+<a href="{% url 'password_reset' %}">Parolingiz esdan chiqdimi?</a>
+
+{% endblock content %}

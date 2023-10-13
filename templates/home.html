@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Maqolalar{% endblock title %}
+
+{% block content %}
+
+<br>
+<div class="row">
+  {% for blog in blogs %}
+  <div class="col-sm-4 mb-3 mb-sm-0">
+    <div class="card">
+      {% if blog.image %}
+      <a href="{% url 'blog_detail' blog.pk %}"><img src="{{ blog.image.url }}" class="card-img-top" alt="{{ blog.title }}"></a>
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ blog.title }}</h5>
+        <p class="card-text"><small class="text-body-secondary">{{ blog.author }} | {{ blog.at_date }}</small></p>
+        <p class="card-text">{{ blog.summary }}.</p>
+        <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-primary">Ko'rish</a>
+      </div>
+    </div>
+    <p></p>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

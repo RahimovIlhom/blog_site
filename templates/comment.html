@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Izoh{% endblock title %}
+
+{% block content %}
+<h1>{{ blog.title }} blogiga izoh bildirish</h1>
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Yozish">
+</form>
+
+{% endblock content %}
